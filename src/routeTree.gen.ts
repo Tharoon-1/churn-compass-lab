@@ -11,7 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DatasetRouteImport } from './routes/dataset'
+import { Route as EvaluationRouteImport } from './routes/evaluation'
+import { Route as ExperimentsRouteImport } from './routes/experiments'
 import { Route as PipelineRouteImport } from './routes/pipeline'
+import { Route as PredictionsRouteImport } from './routes/predictions'
+import { Route as PresentationRouteImport } from './routes/presentation'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +27,98 @@ const DatasetRoute = DatasetRouteImport.update({
   path: '/dataset',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EvaluationRoute = EvaluationRouteImport.update({
+  id: '/evaluation',
+  path: '/evaluation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperimentsRoute = ExperimentsRouteImport.update({
+  id: '/experiments',
+  path: '/experiments',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PipelineRoute = PipelineRouteImport.update({
   id: '/pipeline',
   path: '/pipeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PredictionsRoute = PredictionsRouteImport.update({
+  id: '/predictions',
+  path: '/predictions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PresentationRoute = PresentationRouteImport.update({
+  id: '/presentation',
+  path: '/presentation',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dataset': typeof DatasetRoute
+  '/evaluation': typeof EvaluationRoute
+  '/experiments': typeof ExperimentsRoute
   '/pipeline': typeof PipelineRoute
+  '/predictions': typeof PredictionsRoute
+  '/presentation': typeof PresentationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dataset': typeof DatasetRoute
+  '/evaluation': typeof EvaluationRoute
+  '/experiments': typeof ExperimentsRoute
   '/pipeline': typeof PipelineRoute
+  '/predictions': typeof PredictionsRoute
+  '/presentation': typeof PresentationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dataset': typeof DatasetRoute
+  '/evaluation': typeof EvaluationRoute
+  '/experiments': typeof ExperimentsRoute
   '/pipeline': typeof PipelineRoute
+  '/predictions': typeof PredictionsRoute
+  '/presentation': typeof PresentationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dataset' | '/pipeline'
+  fullPaths:
+    | '/'
+    | '/dataset'
+    | '/evaluation'
+    | '/experiments'
+    | '/pipeline'
+    | '/predictions'
+    | '/presentation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dataset' | '/pipeline'
-  id: '__root__' | '/' | '/dataset' | '/pipeline'
+  to:
+    | '/'
+    | '/dataset'
+    | '/evaluation'
+    | '/experiments'
+    | '/pipeline'
+    | '/predictions'
+    | '/presentation'
+  id:
+    | '__root__'
+    | '/'
+    | '/dataset'
+    | '/evaluation'
+    | '/experiments'
+    | '/pipeline'
+    | '/predictions'
+    | '/presentation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DatasetRoute: typeof DatasetRoute
+  EvaluationRoute: typeof EvaluationRoute
+  ExperimentsRoute: typeof ExperimentsRoute
   PipelineRoute: typeof PipelineRoute
+  PredictionsRoute: typeof PredictionsRoute
+  PresentationRoute: typeof PresentationRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +137,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DatasetRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/evaluation': {
+      id: '/evaluation'
+      path: '/evaluation'
+      fullPath: '/evaluation'
+      preLoaderRoute: typeof EvaluationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experiments': {
+      id: '/experiments'
+      path: '/experiments'
+      fullPath: '/experiments'
+      preLoaderRoute: typeof ExperimentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pipeline': {
       id: '/pipeline'
       path: '/pipeline'
       fullPath: '/pipeline'
       preLoaderRoute: typeof PipelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/predictions': {
+      id: '/predictions'
+      path: '/predictions'
+      fullPath: '/predictions'
+      preLoaderRoute: typeof PredictionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/presentation': {
+      id: '/presentation'
+      path: '/presentation'
+      fullPath: '/presentation'
+      preLoaderRoute: typeof PresentationRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +178,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DatasetRoute: DatasetRoute,
+  EvaluationRoute: EvaluationRoute,
+  ExperimentsRoute: ExperimentsRoute,
   PipelineRoute: PipelineRoute,
+  PredictionsRoute: PredictionsRoute,
+  PresentationRoute: PresentationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
