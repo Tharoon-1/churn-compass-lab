@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { budgetError, completedCount, demoExperiments, type Experiment } from "./store";
 
 const mk = (i: number, status: Experiment["status"]): Experiment => ({
-  ...demoExperiments()[0], id: `x${i}`, run: i, status,
+  ...demoExperiments()[0]!, id: `x${i}`, run: i, status,
 });
 
 describe("experiment budget", () => {
