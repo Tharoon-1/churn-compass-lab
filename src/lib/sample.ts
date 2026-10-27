@@ -12,7 +12,7 @@ export function syntheticRows(n = 400): Row[] {
   const pay = ["Electronic check", "Mailed check", "Bank transfer", "Credit card"];
   return Array.from({ length: n }, (_, i) => {
     const tenure = Math.floor(r() * 72);
-    const contract = contracts[Math.floor(r() * 3)];
+    const contract = contracts[Math.floor(r() * 3)]!;
     const monthly = +(20 + r() * 100).toFixed(2);
     const p = 0.1 + (contract === "Month-to-month" ? 0.3 : 0) + (tenure < 12 ? 0.2 : 0) + (monthly > 80 ? 0.1 : 0);
     return {
@@ -21,8 +21,8 @@ export function syntheticRows(n = 400): Row[] {
       senior_citizen: r() > 0.84 ? "1" : "0",
       tenure_months: String(tenure),
       contract,
-      internet_service: internet[Math.floor(r() * 3)],
-      payment_method: pay[Math.floor(r() * 4)],
+      internet_service: internet[Math.floor(r() * 3)]!,
+      payment_method: pay[Math.floor(r() * 4)]!,
       monthly_charges: String(monthly),
       total_charges: r() < 0.03 ? "" : String(+(monthly * Math.max(tenure, 1)).toFixed(2)),
       tech_support: r() < 0.05 ? "" : r() > 0.6 ? "Yes" : "No",

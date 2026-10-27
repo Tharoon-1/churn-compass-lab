@@ -88,8 +88,8 @@ function Overview() {
                   <XAxis dataKey="run" tick={{ fontSize: 12, fill: "var(--muted-foreground)" }} />
                   <YAxis domain={["auto", "auto"]} tick={{ fontSize: 12, fill: "var(--muted-foreground)" }} />
                   <Tooltip contentStyle={{ fontSize: 12, borderRadius: 6 }} />
-                  <Line type="monotone" dataKey="roc" name="ROC-AUC" stroke="var(--chart-1)" strokeWidth={2} dot={{ r: 3 }} />
-                  <Line type="monotone" dataKey="pr" name="PR-AUC" stroke="var(--chart-2)" strokeWidth={2} dot={{ r: 3 }} />
+                  <Line type="monotone" dataKey="roc" name="ROC-AUC" stroke="var(--chart-1)" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} />
+                  <Line type="monotone" dataKey="pr" name="PR-AUC" stroke="var(--chart-2)" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
